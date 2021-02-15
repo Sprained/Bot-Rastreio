@@ -4,6 +4,7 @@ namespace Sprained\Rastreio;
 
 use Sprained\Rastreio\Constants\Api;
 use Sprained\Rastreio\Services\Message;
+use Sprained\Rastreio\Services\Rastreio as ServicesRastreio;
 
 class Rastreio
 {
@@ -45,6 +46,7 @@ class Rastreio
     private function processMessage($message)
     {
         $send = new Message();
+        $rast = new ServicesRastreio();
 
         $chat_id = $message['chat']['id'];
 
@@ -57,8 +59,12 @@ class Rastreio
 Sou um bot para lhe atualizar do seu rastreio.
 Para adicionar um codigo de rastreio digite o comando
 /codigo: O codigo']);
-            } else if(strpos($text, '/codigo') === 0) {
-                echo $_ENV['DB_HOST'];
+            } else if(strpos($text, '/codigo:') === 0) {
+                $codigo = trim(explode(':', $text)[1]);
+
+                print_r($rast->registerCod($codigo, $chat_id));
+            } else {
+                $send->sendMessage('sendMessage', ['chat_id' => $chat_id, 'text' => 'Não entendi, poderia repetir?']);
             }
         } else {
             $send->sendMessage('sendMessage', ['chat_id' => $chat_id, 'text' => 'Favor informe as mensagens em texto']);

@@ -9,7 +9,8 @@
     ],
     "require": {
         "telegram-bot/api": "^2.3",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "sprained/calculo-frete": "^1.1"
     },
     "autoload": {
         "psr-4": {
