@@ -23,19 +23,19 @@ class Rastreio
      */
     private function response()
     {
-        $response = file_get_contents(Api::URL . 'getUpdates');
-
-        $json = json_decode($response, true);
-
-        $length = count($json['result']);
-
-        return $json['result'][$length - 1]['message'];
-
-        // $response = file_get_contents("php://input");
+        // $response = file_get_contents(Api::URL . 'getUpdates');
 
         // $json = json_decode($response, true);
 
-        // return $json['message'];
+        // $length = count($json['result']);
+
+        // return $json['result'][$length - 1]['message'];
+
+        $response = file_get_contents("php://input");
+
+        $json = json_decode($response, true);
+
+        return $json['message'];
     }
 
     /**
