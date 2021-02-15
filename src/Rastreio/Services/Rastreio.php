@@ -34,6 +34,15 @@ class Rastreio extends Conexao implements RastreioInterface
         return ['chat_id' => $chat_id, 'updated_at' =>$updated_at];
     }
 
+    public function getCods()
+    {
+        $db = $this->connect();
+
+        $cods = $db->query('SELECT * FROM rastreio')->fetch_all(MYSQLI_ASSOC);
+
+        return $cods;
+    }
+
     public function registerCod($codigo, $chat_id)
     {
         $send = new Message();

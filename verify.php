@@ -2,9 +2,9 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Sprained\Rastreio\Rastreio;
+use Sprained\Rastreio\Verify;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$rastreio = new Rastreio();
+$verify = new Verify();

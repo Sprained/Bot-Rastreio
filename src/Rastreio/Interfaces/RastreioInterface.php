@@ -20,4 +20,11 @@ interface RastreioInterface
      * @return array
      */
     public function verifyCod($codigo);
+    
+    /**
+     * Retorna todos os codigos de rastreio para verificação
+     * 
+     * @return array
+     */
+    public function getCods();
 }
