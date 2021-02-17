@@ -2,7 +2,6 @@
 
 namespace Sprained\Rastreio\Services;
 
-use Sprained\Rastreio\Constants\Api;
 use Sprained\Rastreio\Interfaces\MessageInterface;
 
 class Message implements MessageInterface
@@ -18,6 +17,6 @@ class Message implements MessageInterface
             ]
         ];
 
-        file_get_contents(Api::URL . $method, false, stream_context_create($options));
+        file_get_contents($_ENV['API_URL'] . $method, false, stream_context_create($options));
     }
 }

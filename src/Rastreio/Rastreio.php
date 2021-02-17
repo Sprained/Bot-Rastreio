@@ -2,7 +2,6 @@
 
 namespace Sprained\Rastreio;
 
-use Sprained\Rastreio\Constants\Api;
 use Sprained\Rastreio\Services\Message;
 use Sprained\Rastreio\Services\Rastreio as ServicesRastreio;
 
@@ -23,7 +22,7 @@ class Rastreio
      */
     private function response()
     {
-        // $response = file_get_contents(Api::URL . 'getUpdates');
+        // $response = file_get_contents($_ENV['API_URL'] . 'getUpdates');
 
         // $json = json_decode($response, true);
 
