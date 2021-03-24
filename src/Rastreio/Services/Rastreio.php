@@ -10,16 +10,16 @@ use Sprained\Rastreio\Interfaces\RastreioInterface;
 
 class Rastreio extends Conexao implements RastreioInterface
 {
-    public function verifyCod($codigo)
+    public function verifyCod($codigo, $chat)
     {
         $db = $this->connect();
 
-        if($cod = $db->prepare('SELECT chat_id, updated_at FROM rastreio WHERE cod_rastreio = ?')) {
+        if($cod = $db->prepare('SELECT chat_id, updated_at FROM rastreio WHERE cod_rastreio = ? AND chat_id = ?')) {
             $chat_id = '';
             $updated_at = '';
             $cod_replace = preg_replace('/[\'"]/i', null, $codigo);
 
-            $cod->bind_param('s', $cod_replace);
+            $cod->bind_param('ss', $cod_replace, $chat);
             $cod->execute();
             $cod->bind_result($chat_id, $updated_at);
 
@@ -57,7 +57,7 @@ class Rastreio extends Conexao implements RastreioInterface
             return $send->sendMessage('sendMessage', ['chat_id' => $chat_id, 'text' => json_decode($e->getMessage(), true)['message']]);
         }
 
-        if($this->verifyCod($cod_replace)) {
+        if($this->verifyCod($cod_replace, $chat_id)) {
             return $send->sendMessage('sendMessage', ['chat_id' => $chat_id, 'text' =>
 
 'Código de rastreio já cadastrado!

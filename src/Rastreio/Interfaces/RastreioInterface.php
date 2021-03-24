@@ -16,10 +16,11 @@ interface RastreioInterface
      * Verifica se codigo de rastreio se ja encontra cadastrado no banco de dados e retorna infos
      * 
      * @param string $codigo
+     * @param string $chat
      * 
      * @return array
      */
-    public function verifyCod($codigo);
+    public function verifyCod($codigo, $chat);
     
     /**
      * Retorna todos os codigos de rastreio para verificação
